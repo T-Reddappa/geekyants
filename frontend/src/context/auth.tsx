@@ -16,18 +16,19 @@ type AuthContextType = {
   user: User | null;
   setUser: (user: User | null) => void;
   logout: () => void;
+  loading: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   // Fetch profile on load
   const fetchProfile = async () => {
     try {
       const res = await api.get<User>("/auth/profile");
-
       setUser(res.data);
     } catch (err) {
       setUser(null);
@@ -36,7 +37,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) fetchProfile();
+    console.log("token", token);
+    if (token) {
+      fetchProfile().finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   const logout = () => {
@@ -45,7 +51,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, logout }}>
+    <AuthContext.Provider value={{ user, setUser, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

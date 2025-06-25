@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://geekyants-ev7r.onrender.com/api", // your backend port
-  withCredentials: false, // set to true if using cookies
+  // baseURL: "https://geekyants-ev7r.onrender.com/api",
+  baseURL: "http://localhost:5000/api",
+  withCredentials: false,
 });
 
 // Automatically attach token if it exists

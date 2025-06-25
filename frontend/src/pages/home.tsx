@@ -2,9 +2,12 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { RocketIcon } from "lucide-react";
+import { useAuth } from "@/context/auth";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  console.log(user);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-200 flex flex-col items-center justify-center px-6 text-center">
@@ -34,7 +37,15 @@ const Home = () => {
       >
         <Button
           className="text-lg p-6 rounded-lg shadow-md cursor-pointer "
-          onClick={() => navigate("/login")}
+          onClick={() =>
+            user
+              ? navigate(
+                  user?.role === "manager"
+                    ? "/dashboard/manager"
+                    : "/dashboard/engineer"
+                )
+              : navigate("/login")
+          }
         >
           <RocketIcon className="w-5 h-5 mr-2" />
           Launch Dashboard

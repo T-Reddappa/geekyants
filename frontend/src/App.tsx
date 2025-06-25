@@ -1,12 +1,11 @@
 import { Routes, Route } from "react-router-dom";
+
 import LoginPage from "./pages/login";
-
-import PrivateRoute from "./components/privateRoute";
-
 import Home from "./pages/home";
-import ManagerDashboard from "./pages/dashboard/manager";
-import Navigation from "./components/navigation";
 import EngineerDashboard from "./pages/dashboard/engineer";
+import ManagerDashboard from "./pages/dashboard/manager";
+import PrivateRoute from "./components/privateRoute";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
@@ -19,7 +18,7 @@ function App() {
         element={
           <PrivateRoute>
             <div>
-              <Navigation />
+              <Navbar />
               <ManagerDashboard />
             </div>
           </PrivateRoute>
@@ -31,7 +30,7 @@ function App() {
         element={
           <PrivateRoute>
             <div>
-              <Navigation />
+              <Navbar />
               <EngineerDashboard />
             </div>
           </PrivateRoute>

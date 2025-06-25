@@ -2,9 +2,11 @@ import { useAuth } from "../context/auth";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { LogOut, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const Navigation = () => {
+const Navbar = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
@@ -15,7 +17,12 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <h1 className="text-4xl font-bold text-gray-900">RMS</h1>
+            <h1
+              className="text-4xl font-bold text-gray-900 cursor-pointer"
+              onClick={() => navigate("/")}
+            >
+              RMS
+            </h1>
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
@@ -41,4 +48,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Navbar;

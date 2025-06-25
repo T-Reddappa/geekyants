@@ -7,7 +7,7 @@ import { AuthRequest } from "../middlewares/authMiddleware";
 export const getEngineers = async (req: Request, res: Response) => {
   try {
     const engineers = await User.find({ role: "engineer" }).select("-password");
-    res.json(engineers);
+    res.status(200).json(engineers);
   } catch (err) {
     res.status(500).json({ msg: "Failed to fetch engineers", error: err });
   }
@@ -38,7 +38,7 @@ export const getEngineerCapacity = async (req: Request, res: Response) => {
 
     const available = engineer.maxCapacity - totalAllocated;
 
-    res.json({
+    res.status(200).json({
       engineerId: id,
       maxCapacity: engineer.maxCapacity,
       allocated: totalAllocated,
@@ -56,7 +56,7 @@ export const getEngineerById = async (req: Request, res: Response) => {
       res.status(404).json({ message: "Engineer not found" });
       return;
     }
-    res.json(engineer);
+    res.status(200).json(engineer);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
@@ -74,7 +74,7 @@ export const updateEngineer = async (req: Request, res: Response) => {
       return;
     }
 
-    res.json(updatedEngineer);
+    res.status(200).json(updatedEngineer);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

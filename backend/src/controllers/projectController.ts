@@ -36,7 +36,7 @@ export const createProject = async (req: AuthRequest, res: Response) => {
 export const getProjects = async (req: Request, res: Response) => {
   try {
     const projects = await Project.find().populate("managerId", "name email");
-    res.json(projects);
+    res.status(200).json(projects);
   } catch (err) {
     res.status(500).json({ msg: "Error fetching projects", error: err });
   }
@@ -52,7 +52,7 @@ export const getProjectById = async (req: Request, res: Response) => {
       res.status(404).json({ msg: "Project not found" });
       return;
     }
-    res.json(project);
+    res.status(200).json(project);
   } catch (err) {
     res.status(500).json({ msg: "Error retrieving project", error: err });
   }
@@ -72,7 +72,7 @@ export const updateProject = async (req: AuthRequest, res: Response) => {
       return;
     }
 
-    res.json(updated);
+    res.status(200).json(updated);
   } catch (err) {
     console.error("Error updating project", err);
     res.status(500).json({ msg: "Server error" });

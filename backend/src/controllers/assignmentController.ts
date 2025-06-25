@@ -82,7 +82,7 @@ export const getAssignments = async (req: Request, res: Response) => {
       };
     });
 
-    res.json(transformedAssignments);
+    res.status(200).json(transformedAssignments);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
@@ -100,7 +100,7 @@ export const updateAssignment = async (req: Request, res: Response) => {
       res.status(404).json({ msg: "Assignment not found" });
       return;
     }
-    res.json(updated);
+    res.status(200).json(updated);
   } catch (err) {
     res.status(500).json({ msg: "Failed to update", error: err });
   }
@@ -114,7 +114,7 @@ export const deleteAssignment = async (req: Request, res: Response) => {
       res.status(404).json({ msg: "Assignment not found" });
       return;
     }
-    res.json({ msg: "Assignment deleted" });
+    res.status(200).json({ msg: "Assignment deleted" });
   } catch (err) {
     res.status(500).json({ msg: "Failed to delete", error: err });
   }

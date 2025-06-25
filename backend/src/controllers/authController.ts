@@ -27,7 +27,7 @@ export const login = async (req: Request, res: Response) => {
       }
     );
 
-    res.json({ token, user });
+    res.status(200).json({ token, user });
   } catch (err) {
     res.status(500).json({ msg: "Server error" });
   }
@@ -48,7 +48,7 @@ export const getProfile = async (req: AuthRequest, res: Response) => {
       return;
     }
 
-    res.json(user);
+    res.status(200).json(user);
   } catch (err) {
     res.status(500).json({ msg: "Failed to fetch profile", error: err });
   }
