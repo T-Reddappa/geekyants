@@ -82,6 +82,16 @@ root/
 
 ---
 
+### 👤 Demo User Credentials
+
+| Role     | Email               | Password    |
+| -------- | ------------------- | ----------- |
+| Engineer | alice@example.com   | password123 |
+| Engineer | raj@example.com     | password123 |
+| Engineer | sarah@example.com   | password123 |
+| Engineer | dev@example.com     | password123 |
+| Manager  | manager@example.com | admin123    |
+
 ## License
 
 MIT
