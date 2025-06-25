@@ -1,0 +1,38 @@
+export const projects = [
+  {
+    name: "AI Dashboard",
+    description: "Visualization tool for AI metrics",
+    startDate: new Date("2025-07-01"),
+    endDate: new Date("2025-09-30"),
+    requiredSkills: ["React", "TypeScript"],
+    teamSize: 3,
+    status: "active",
+  },
+  {
+    name: "Backend Revamp",
+    description: "Refactor monolith to microservices",
+    startDate: new Date("2025-06-01"),
+    endDate: new Date("2025-10-15"),
+    requiredSkills: ["Node.js", "MongoDB"],
+    teamSize: 4,
+    status: "active",
+  },
+  {
+    name: "Client Portal",
+    description: "Web portal for clients to manage data",
+    startDate: new Date("2025-08-01"),
+    endDate: new Date("2025-10-01"),
+    requiredSkills: ["React", "Node.js"],
+    teamSize: 2,
+    status: "planning",
+  },
+  {
+    name: "API Integration Layer",
+    description: "Middleware for 3rd party APIs",
+    startDate: new Date("2025-05-01"),
+    endDate: new Date("2025-07-15"),
+    requiredSkills: ["Python", "Django"],
+    teamSize: 2,
+    status: "completed",
+  },
+];
