@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api", // your backend port
+  baseURL: "https://geekyants-ev7r.onrender.com/api", // your backend port
   withCredentials: false, // set to true if using cookies
 });
 

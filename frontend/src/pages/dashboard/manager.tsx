@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { Plus, Search, Users, Briefcase, BarChart3 } from "lucide-react";
 import api from "../../lib/api";
 import { useAuth } from "../../context/auth";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
-import { Label } from "../../components/ui/label";
-import { Textarea } from "../../components/ui/textarea";
 import { Progress } from "../../components/ui/progress";
 import { Badge } from "../../components/ui/badge";
 import {
@@ -25,7 +22,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
