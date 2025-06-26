@@ -1,5 +1,5 @@
 import axios from "axios";
-import { toastError, toastSuccess } from "../components/ui/toast";
+import { toastError } from "../components/ui/toast";
 
 const api = axios.create({
   baseURL: "https://geekyants-ev7r.onrender.com/api",

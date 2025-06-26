@@ -33,7 +33,7 @@ type User = {
 const LoginPage = () => {
   const { setUser } = useAuth();
   const navigate = useNavigate();
-  const { showSuccess, showError } = useToast();
+  const { showSuccess } = useToast();
 
   const {
     register,
