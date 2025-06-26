@@ -46,7 +46,7 @@ const ManagerDashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 md:px-10 py-6">
+    <div className="min-h-screen px-4 md:px-10 py-6 bg-gray-50">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Manager Dashboard</h1>
         <p className="text-gray-600">Manage your team and projects</p>

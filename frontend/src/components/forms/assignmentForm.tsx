@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import api from "../../lib/api";
+import { useToast } from "../../lib/useToast";
 
 type Engineer = {
   _id: string;
@@ -35,6 +36,8 @@ export default function AssignmentForm({
   projects,
   onSuccess,
 }: Props) {
+  const { showSuccess, showError, showWarning } = useToast();
+
   const { register, handleSubmit, setValue, control } = useForm();
   const [filteredEngineers, setFilteredEngineers] = useState<Engineer[]>([]);
   const selectedProjectId = useWatch({
@@ -61,7 +64,7 @@ export default function AssignmentForm({
   const onSubmit = async (data: any) => {
     try {
       if (!data.engineerId || !data.projectId) {
-        alert("Please select both an engineer and a project.");
+        showWarning("Please select both an engineer and a project.");
         return;
       }
       await api.post("/assignments", {
@@ -72,10 +75,12 @@ export default function AssignmentForm({
         endDate: new Date(data.endDate),
         role: data.role,
       });
+      showSuccess("Assignment created successfully!");
       onSuccess();
     } catch (err: any) {
-      alert(err?.response?.data?.msg || "Assignment creation failed");
       console.error(err);
+      // Error handling is done by API interceptor, but we can add specific messages if needed
+      showError("Failed to create assignment. Please try again.");
     }
   };
 

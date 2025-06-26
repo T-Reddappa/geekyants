@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import api from "../../lib/api";
+import { useToast } from "../../lib/useToast";
 import type { Project } from "@/types";
 
 type Props = {
@@ -21,6 +22,8 @@ type Props = {
 };
 
 const ProjectForm = ({ initialValues, onClose, managerId }: Props) => {
+  const { showSuccess, showError } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -66,15 +69,23 @@ const ProjectForm = ({ initialValues, onClose, managerId }: Props) => {
     try {
       if (initialValues) {
         await api.put(`/projects/${initialValues._id}`, payload);
+        showSuccess("Project updated successfully!");
       } else {
         await api.post("/projects", {
           ...payload,
           managerId,
         });
+        showSuccess("Project created successfully!");
       }
       onClose();
     } catch (err) {
       console.error("Failed to submit project", err);
+      // Error handling is done by API interceptor, but we can add specific messages if needed
+      if (initialValues) {
+        showError("Failed to update project. Please try again.");
+      } else {
+        showError("Failed to create project. Please try again.");
+      }
     }
   };
 

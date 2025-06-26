@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
+import { useToast } from "../lib/useToast";
 
 type LoginFormData = {
   email: string;
@@ -32,6 +33,7 @@ type User = {
 const LoginPage = () => {
   const { setUser } = useAuth();
   const navigate = useNavigate();
+  const { showSuccess, showError } = useToast();
 
   const {
     register,
@@ -47,13 +49,17 @@ const LoginPage = () => {
       localStorage.setItem("token", token);
       setUser(user);
 
+      showSuccess(`Welcome back, ${user.name}!`);
+
       if (user.role === "manager") {
         navigate("/dashboard/manager");
       } else {
         navigate("/dashboard/engineer");
       }
     } catch (err: any) {
-      alert("Invalid credentials or server error");
+      // The error handling is now done by the API interceptor
+      // But we can add additional error handling here if needed
+      console.error("Login error:", err);
     }
   };
 

@@ -11,34 +11,7 @@ import {
 import { getCapacityStatus } from "@/components/engineerDashboard/utils";
 import ProfileCard from "@/components/engineerDashboard/profileCard";
 import AssignmentCard from "@/components/engineerDashboard/assignmentCard";
-
-type Assignment = {
-  _id: string;
-  project: {
-    name: string;
-    description: string;
-    startDate: string;
-    endDate: string;
-    status: string;
-    requiredSkills: string[];
-  };
-  role: string;
-  allocationPercentage: number;
-  startDate: string;
-  endDate: string;
-};
-
-type EngineerProfile = {
-  _id: string;
-  name: string;
-  email: string;
-  skills: string[];
-  seniority: "junior" | "mid" | "senior";
-  maxCapacity: number;
-  department: string;
-  currentCapacity: number;
-  employmentType: "full-time" | "part-time";
-};
+import type { Assignment, EngineerProfile } from "@/types";
 
 const EngineerDashboard = () => {
   const { user } = useAuth();

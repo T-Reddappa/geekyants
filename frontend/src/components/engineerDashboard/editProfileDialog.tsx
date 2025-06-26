@@ -20,6 +20,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Edit } from "lucide-react";
 import api from "@/lib/api";
+import { useToast } from "@/lib/useToast";
 import { useState } from "react";
 import type { EngineerProfile } from "@/types";
 
@@ -30,6 +31,8 @@ const EditProfileDialog = ({
   profile: EngineerProfile | null;
   onProfileUpdated: () => void;
 }) => {
+  const { showSuccess, showError } = useToast();
+
   const { register, handleSubmit, control, reset } = useForm();
   const [open, setOpen] = useState(false);
 
@@ -39,11 +42,13 @@ const EditProfileDialog = ({
         ...data,
         skills: data.skills.split(",").map((s: string) => s.trim()),
       });
+      showSuccess("Profile updated successfully!");
       setOpen(false);
       reset();
       onProfileUpdated();
     } catch (err) {
       console.error("Failed to update profile", err);
+      showError("Failed to update profile. Please try again.");
     }
   };
 
